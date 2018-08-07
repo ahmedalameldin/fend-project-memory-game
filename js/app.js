@@ -10,6 +10,7 @@
  *   - add each card's HTML to the page
  */
 
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -24,6 +25,31 @@ function shuffle(array) {
 
     return array;
 }
+
+//locate card list
+const cards = document.querySelectorAll('.card');
+console.log(cards);
+
+const deck = document.querySelector('.deck');
+console.log(deck);
+
+// listen to cards inside the class deck
+deck.addEventListener('click', event => {
+    const clickTarget = event.target;
+    if (clickTarget.classList.contains('card')){
+        toggleCard(clickTarget);
+        console.log('one card');
+    }
+});
+
+// Toggle class of cards fuunction
+function toggleCard(clickTarget) {
+    clickTarget.classList.toggle('show'); 
+    clickTarget.classList.toggle('open');
+};
+
+
+
 
 
 /*
