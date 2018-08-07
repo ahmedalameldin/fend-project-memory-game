@@ -1,6 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
+
+// GLOBAL SCOPE
+const deck = document.querySelector('.deck');
 let toggledCards = [];
 
 /*
@@ -24,14 +27,7 @@ function shuffle(array) {
     }
 
     return array;
-}
-
-//locate card list
-const cards = document.querySelectorAll('.card');
-console.log(cards);
-
-const deck = document.querySelector('.deck');
-console.log(deck);
+};
 
 // listen to cards inside the class deck
 deck.addEventListener('click', event => {
@@ -85,8 +81,16 @@ function checkForMatch() {
         }
 };
 
-
-
+// shuffel cards
+function shuffleDeck() {
+    const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
+    const shuffledCards = shuffle(cardsToShuffle);
+    
+    for (card of shuffledCards) {
+        deck.appendChild(card);
+    }
+}
+shuffleDeck();
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
