@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
+let toggledCards = [];
 
 /*
  * Display the cards on the page
@@ -36,10 +36,16 @@ console.log(deck);
 // listen to cards inside the class deck
 deck.addEventListener('click', event => {
     const clickTarget = event.target;
-    if (clickTarget.classList.contains('card')){
+    if (clickTarget.classList.contains('card') && toggledCards.length < 2){
         toggleCard(clickTarget);
-        console.log('one card');
+        addToggleCard(clickTarget);
+        //console.log('one card');
     }
+    if (toggledCards.length === 2) {
+        console.log('Now toggled Cards array have 2 cards');
+        checkForMatch();
+    }
+
 });
 
 // Toggle class of cards fuunction
@@ -48,7 +54,30 @@ function toggleCard(clickTarget) {
     clickTarget.classList.toggle('open');
 };
 
+// push the clickTarget into the toggledCards array in global scope
+function addToggleCard(clickTarget) {
+    toggledCards.push(clickTarget);
+    console.log(toggledCards);
+};
 
+// looking for a match
+function checkForMatch() {
+    if (
+    toggledCards[0].firstElementChild.className
+    ===
+    toggledCards[1].firstElementChild.className
+    ) {        
+    toggledCards[0].classList.toggle('match');
+    toggledCards[1].classList.toggle('match');
+    toggledCards = [];
+    console.log('matched')
+    } else {
+    toggleCard(toggledCards[0]);
+    toggleCard(toggledCards[1]);
+    toggledCards = [];
+    console.log('Not matched') //for now pass func to console to see the result
+    }
+};
 
 
 
