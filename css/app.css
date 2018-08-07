@@ -107,3 +107,61 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Styles for the Finish Modal
+ */
+
+ .modal_bkgd {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(46, 61, 73, 0.5);
+}
+
+.modal_body {
+    position: relative;
+    width: 450px;
+    top: 50%;
+    left: 50%;
+    background: #ffffff;
+    transform: translate(-50%, -70%)
+}
+
+.modal_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background: #02ccba;
+}
+
+.modal_close {
+    font-weight: bolder;
+    font-size: 1.75rem;
+}
+
+
+.modal_stats {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    align-items: center;
+}
+
+.modal_btns {
+    display: flex;
+    justify-content: space-around;
+    padding: 3rem;
+}
+
+.modal_btn {
+    width: 120px;
+    height: 35px;
+}
+
+.hide {
+    display: none;
+}

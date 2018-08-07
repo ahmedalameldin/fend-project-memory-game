@@ -6,6 +6,9 @@
 const deck = document.querySelector('.deck');
 let toggledCards = [];
 let moves = 0;
+let clockOff = true;
+let time = 0;
+let clockId;
 
 /*
  * Display the cards on the page
@@ -28,7 +31,7 @@ function shuffle(array) {
     }
 
     return array;
-};
+}
 
 // listen to cards inside the class deck
 deck.addEventListener('click', event => {
@@ -37,14 +40,26 @@ deck.addEventListener('click', event => {
     if (isClickValid(clickTarget)) {
         toggleCard(clickTarget);
         addToggleCard(clickTarget);
+        
     }
     if (toggledCards.length === 2) {
     //console.log('Now toggled Cards array have 2 cards');
         checkForMatch(clickTarget);
-        addMove()
-        checkScore()
-    }
+        addMove();
+        checkScore();
+    } 
 });
+
+// func to start the clock when click on card deck
+deck.addEventListener('click', event => {
+    const clickTarget = event.target;
+    if (isClickValid(clickTarget)){
+        if (clockOff) {
+            startClock();
+            clockOff = false;
+        }
+    }
+}); 
 
 // valid a click func
 function isClickValid(clickTarget) {
@@ -52,19 +67,19 @@ function isClickValid(clickTarget) {
             !clickTarget.classList.contains('match') &&
             toggledCards.length < 2 &&
             !toggledCards.includes(clickTarget));
-};
+}
 
 // Toggle class of cards fuunction
 function toggleCard(card) {
     card.classList.toggle('show'); 
     card.classList.toggle('open');
-};
+}
 
 // push the clickTarget into the toggledCards array in global scope
 function addToggleCard(clickTarget) {
     toggledCards.push(clickTarget);
     //console.log(toggledCards);
-};
+}
 
 // looking for a match
 function checkForMatch() {
@@ -82,7 +97,7 @@ function checkForMatch() {
         toggledCards = [];
         }, 1000);
         }
-};
+}
 
 // shuffel cards
 function shuffleDeck() {
@@ -93,7 +108,6 @@ function shuffleDeck() {
         deck.appendChild(card);
     }
 }
-shuffleDeck();
 
 // MOVES : Add move func
 function addMove() {
@@ -101,7 +115,7 @@ function addMove() {
     const moveText = document.querySelector('.moves');
     moveText.innerHTML = moves;
     console.log(moves);
-};
+}
 
 // STARS : vs Moves to check score rating and hide a star
 function checkScore() {
@@ -122,7 +136,55 @@ function hideStar() {
 };
 // hideStar();
 
+// start clock count
+function startClock() {
+    clockId = setInterval(() => {
+    time++;
+    displayTime();
+    console.log(time);
+ }, 1000);
+};
 
+// Display clock count
+function displayTime() {
+    const clock = document.querySelector(".clock");
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    //console.log(clock);
+    if (seconds < 10) {
+        clock.innerHTML = `${minutes}:0${seconds}`;
+    } else {
+        clock.innerHTML = `${minutes}:${seconds}`;
+    }
+};
+
+// Stop the clock
+function stopClock() {
+    clearInterval(clockId);
+}
+
+// Show-Hide Modal Stats
+function toggleModal() {
+    const modal = document.querySelector('.modal_bkgd');
+    modal.classList.toggle('hide');
+};
+
+// write stats into the func
+function writeModalStats() {
+    const timeStat = document.querySelector('.modal_time');
+    const clockTime = document.querySelector('.clock').innerHTML;
+    const movesStat = document.querySelector('.modal_moves');
+    const starsStat = document.querySelector('.modal_stars');
+    const stars = getStars();
+
+    timeStat.innerHTML = `Time = ${clockTime}`; 
+    movesStat.innerHTML = `Moves = ${moves}`;
+    starsStat.innerHTML = `Stars = ${stars}`;
+};
+
+shuffleDeck();
+toggleModal();
+toggleModal();
 
 /*
  * set up the event listener for a card. If a card is clicked:
