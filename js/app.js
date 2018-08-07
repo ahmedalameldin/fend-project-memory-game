@@ -5,6 +5,7 @@
 // GLOBAL SCOPE
 const deck = document.querySelector('.deck');
 let toggledCards = [];
+let moves = 0;
 
 /*
  * Display the cards on the page
@@ -38,8 +39,10 @@ deck.addEventListener('click', event => {
         addToggleCard(clickTarget);
     }
     if (toggledCards.length === 2) {
-        console.log('Now toggled Cards array have 2 cards');
+    //console.log('Now toggled Cards array have 2 cards');
         checkForMatch(clickTarget);
+        addMove()
+        checkScore()
     }
 });
 
@@ -60,7 +63,7 @@ function toggleCard(card) {
 // push the clickTarget into the toggledCards array in global scope
 function addToggleCard(clickTarget) {
     toggledCards.push(clickTarget);
-    console.log(toggledCards);
+    //console.log(toggledCards);
 };
 
 // looking for a match
@@ -71,7 +74,7 @@ function checkForMatch() {
             toggledCards[0].classList.toggle('match');
             toggledCards[1].classList.toggle('match');
             toggledCards = [];
-            console.log('matched');
+            //console.log('matched');
     } else {
         setTimeout(function() {
         toggleCard(toggledCards[0]);
@@ -91,6 +94,36 @@ function shuffleDeck() {
     }
 }
 shuffleDeck();
+
+// MOVES : Add move func
+function addMove() {
+    moves++;
+    const moveText = document.querySelector('.moves');
+    moveText.innerHTML = moves;
+    console.log(moves);
+};
+
+// STARS : vs Moves to check score rating and hide a star
+function checkScore() {
+    if (moves === 10 || moves === 14 || moves === 20) {
+        hideStar();
+    }
+};
+
+// STARS : hide 1 star
+function hideStar() {
+    const starList = document.querySelectorAll('.stars li');
+    for (star of starList) {
+        if (star.style.display != 'none') {
+            star.style.display = 'none';
+            break;}
+        };    
+    //console.log(starList);
+};
+// hideStar();
+
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
