@@ -36,22 +36,29 @@ console.log(deck);
 // listen to cards inside the class deck
 deck.addEventListener('click', event => {
     const clickTarget = event.target;
-    if (clickTarget.classList.contains('card') && toggledCards.length < 2){
+
+    if (isClickValid(clickTarget)) {
         toggleCard(clickTarget);
         addToggleCard(clickTarget);
-        //console.log('one card');
     }
     if (toggledCards.length === 2) {
         console.log('Now toggled Cards array have 2 cards');
-        checkForMatch();
+        checkForMatch(clickTarget);
     }
-
 });
 
+// valid a click func
+function isClickValid(clickTarget) {
+    return (clickTarget.classList.contains('card') &&
+            !clickTarget.classList.contains('match') &&
+            toggledCards.length < 2 &&
+            !toggledCards.includes(clickTarget));
+};
+
 // Toggle class of cards fuunction
-function toggleCard(clickTarget) {
-    clickTarget.classList.toggle('show'); 
-    clickTarget.classList.toggle('open');
+function toggleCard(card) {
+    card.classList.toggle('show'); 
+    card.classList.toggle('open');
 };
 
 // push the clickTarget into the toggledCards array in global scope
@@ -62,21 +69,20 @@ function addToggleCard(clickTarget) {
 
 // looking for a match
 function checkForMatch() {
-    if (
-    toggledCards[0].firstElementChild.className
-    ===
-    toggledCards[1].firstElementChild.className
-    ) {        
-    toggledCards[0].classList.toggle('match');
-    toggledCards[1].classList.toggle('match');
-    toggledCards = [];
-    console.log('matched')
+    if (toggledCards[0].firstElementChild.className ===
+        toggledCards[1].firstElementChild.className) {
+            
+            toggledCards[0].classList.toggle('match');
+            toggledCards[1].classList.toggle('match');
+            toggledCards = [];
+            console.log('matched');
     } else {
-    toggleCard(toggledCards[0]);
-    toggleCard(toggledCards[1]);
-    toggledCards = [];
-    console.log('Not matched') //for now pass func to console to see the result
-    }
+        setTimeout(function() {
+        toggleCard(toggledCards[0]);
+        toggleCard(toggledCards[1]);
+        toggledCards = [];
+        }, 1000);
+        }
 };
 
 
