@@ -30,7 +30,7 @@ body {
 
 h1 {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 600;
 }
 
 /*
@@ -55,7 +55,7 @@ h1 {
     height: 125px;
     width: 125px;
     background: #2e3d49;
-    font-size: 15px;
+    font-size: 0;
     color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
@@ -126,8 +126,10 @@ h1 {
     width: 450px;
     top: 50%;
     left: 50%;
-    background: #ffffff;
-    transform: translate(-50%, -70%)
+    background: #ffffff url('../img/geometry2.png');
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    border:3px solid #02ccba;
 }
 
 .modal_heading {
@@ -151,6 +153,10 @@ h1 {
     align-items: center;
 }
 
+.modal_stats span {
+    font-size: 20px;
+}
+
 .modal_btns {
     display: flex;
     justify-content: space-around;
@@ -158,10 +164,112 @@ h1 {
 }
 
 .modal_btn {
-    width: 120px;
-    height: 35px;
+    width: 140px;
+    height: 50px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    border-radius:9px;
+    color:#fff;
+    font-size:15px;
+    border:1px solid #02ccba;
+    cursor: pointer;
+}
+
+.modal_btn:hover {
+    background: linear-gradient(160deg, #aa7ecd 0%, #02ccba 100%);
+    border:1px solid #aa7ecd;
+}
+
+.modal_btn:active {
+	background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+}
+
+/* Start Modal */
+
+.modal_start {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(46, 61, 73, 0.883);
+}
+
+.modal_start_body {
+    position: relative;
+    width: 450px;
+    top: 50%;
+    left: 50%;
+    background: #ffffff url('../img/geometry2.png');
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    text-align: center;
+    padding: 2rem 0;
+    border:3px solid #02ccba;
+}
+
+.modal_start_btn {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    border-radius:9px;
+    color:#fff;
+    font-size:30px;
+    border:1px solid #02ccba;
+    cursor: pointer;
+}
+
+.modal_start_btn:hover {
+    background: linear-gradient(160deg, #aa7ecd 0%, #02ccba 100%);
+    border:1px solid #aa7ecd;
+}
+
+.modal_start_btn:active {
+	background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 }
 
 .hide {
     display: none;
+}
+
+/* Success SVG animation */
+
+svg{
+width: 120px;
+padding: 20px 0;
+
+}
+
+path, polyline{
+fill: none;
+stroke: #02ccba;
+stroke-width: 20;
+stroke-linecap: round;
+stroke-linejoin: round;
+}
+
+.circle{
+stroke-dasharray: 1260;
+animation: circle 1s ease-out ;
+}
+
+.check{
+stroke-dasharray: 430;
+animation: check 1s ease-in ;
+}
+
+@keyframes circle {
+    0%, 40% {
+        stroke-dashoffset: -1260;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes check {
+    0% {
+        stroke-dashoffset: 430;
+    }
+    40% {
+        stroke-dashoffset: 0;
+    }
 }

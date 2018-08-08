@@ -38,6 +38,13 @@ function shuffle(array) {
 deck.addEventListener('click', event => {
     const clickTarget = event.target;
 
+    if (isClickValid(clickTarget)){
+        if (clockOff) {
+            startClock();
+            clockOff = false;
+        }
+    }
+
     if (isClickValid(clickTarget)) {
         toggleCard(clickTarget);
         addToggleCard(clickTarget);
@@ -51,23 +58,13 @@ deck.addEventListener('click', event => {
     } 
 });
 
-// func to start the clock when click on card deck
-deck.addEventListener('click', event => {
-    const clickTarget = event.target;
-    if (isClickValid(clickTarget)){
-        if (clockOff) {
-            startClock();
-            clockOff = false;
-        }
-    }
-}); 
-
 // valid a click func
-function isClickValid(clickTarget) {
+function isClickValid(clickTarget) { 
     return (clickTarget.classList.contains('card') &&
             !clickTarget.classList.contains('match') &&
             toggledCards.length < 2 &&
             !toggledCards.includes(clickTarget));
+            
 }
 
 // Toggle class of cards fuunction
@@ -115,7 +112,6 @@ function addMove() {
     moves++;
     const moveText = document.querySelector('.moves');
     moveText.innerHTML = moves;
-    console.log(moves);
 }
 
 // STARS : vs Moves to check score rating and hide a star
@@ -132,17 +128,14 @@ function hideStar() {
         if (star.style.display != 'none') {
             star.style.display = 'none';
             break;}
-        };    
-    //console.log(starList);
+        };
 }
-// hideStar();
 
 // start clock count
 function startClock() {
     clockId = setInterval(() => {
     time++;
     displayTime();
-    console.log(time);
  }, 1000);
 }
 
@@ -177,9 +170,15 @@ function getStars() {
     return starCount;
 }
 
-// MODAL: Show-Hide Modal Stats
+// MODAL Finish: Show-Hide Modal Stats
 function toggleModal() {
     const modal = document.querySelector('.modal_bkgd');
+    modal.classList.toggle('hide');
+}
+
+// MODAL Start"
+function toggleStartModal() {
+    const modal = document.querySelector('.modal_start');
     modal.classList.toggle('hide');
 }
 
@@ -197,8 +196,8 @@ function writeModalStats() {
 }
 
 // MODAL: Buttons listener func
-document.querySelector('.modal_close').addEventListener('click', toggleModal);
 document.querySelector('.btn_cancel').addEventListener('click', toggleModal);
+document.querySelector('.modal_start_btn').addEventListener('click', toggleStartModal);
 document.querySelector('.btn_reply').addEventListener('click', replyGame);
 document.querySelector('.restart').addEventListener('click', resetGame);
 
@@ -222,16 +221,13 @@ function replyGame() {
 };
 
 
-/*
-Reset Functions :
-*/
+// Reset Functions :
 
 function resetCards() {
     const cards = document.querySelectorAll('.deck li');
     for (let card of cards) {
     card.classList = 'card';
     }
-    //console.log(cards);
 };
 
 function resetStars() {
@@ -269,10 +265,10 @@ function gameOver() {
     toggleModal();
 };
 
-
-
 shuffleDeck();
 writeModalStats();
+//toggleModal();
+toggleStartModal();
 
 /*
  * set up the event listener for a card. If a card is clicked:

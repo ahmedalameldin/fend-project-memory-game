@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Matching Game</title>
@@ -8,9 +9,24 @@
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
 </head>
+
 <body>
 
     <div class="container">
+
+        <div class="modal_start hide">
+            <div class="modal_start_body">
+                
+                    <h1>Matching Game</h1>
+                    <p>MATCH ALL CARDS TO WIN THE GAME !</p>
+                
+                 <div class="modal_btns">
+                    <button class="modal_start_btn">READY</button>
+                </div>
+
+            </div>
+        </div>
+
         <header>
             <h1>Matching Game</h1>
         </header>
@@ -18,19 +34,25 @@
         <section class="score-panel">
 
             <!-- Timer span to add clock here -->
-            <span class="clock">TIME 00:00</span>
+            <span class="clock">00:00</span>
 
-        	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        	</ul>
+            <ul class="stars">
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+            </ul>
 
-        	<span class="moves">3</span> Moves
+            <span class="moves">3</span> Moves
 
             <div class="restart">
-        		<i class="fa fa-repeat"></i>
-        	</div>
+                <i class="fa fa-repeat"></i>
+            </div>
         </section>
 
         <ul class="deck">
@@ -86,22 +108,32 @@
 
         <div class="modal_bkgd hide">
             <div class="modal_body">
-                <div class="modal_heading">
-                    <h1 class="modal_title">Stats</h1>
-                    <span class="modal_close">x</span>
+
+
+                <div class="modal_stats">
+
+                    <svg viewBox="-10 -10 500 500">
+                        <path class="circle" d="M877.28,335.72a203.17,203.17,0,0,1,37.86,118.1C915.14,565.26,823.44,657,712,657s-203.14-91.7-203.14-203.14S600.56,250.68,712,250.68a203.21,203.21,0,0,1,144.67,60.53"
+                            transform="translate(-508.86 -250.68)" />
+                        <polyline class="check" points="78.54 229.94 179.32 300.74 347.98 60.67" />
+                    </svg>
+
+                    <p>You Won!</p>
+                    <h1>Congratulations</h1>
+
+                    <span class="modal_time">x</span>
+                    <span class="modal_stars">x</span>
+                    <span class="modal_moves">x</span>
+
+
+
                 </div>
-    
-            <div class="modal_stats">
-                <span class="modal_time">x</span>
-                <span class="modal_stars">x</span>
-                <span class="modal_moves">x</span>
-            </div>
-    
-            <div class="modal_btns">
-                <button class="modal_btn btn_cancel">Cancel</button>
-                <button class="modal_btn btn_reply">Reply</button>
-            </div>
-    
+
+                <div class="modal_btns">
+                    <button class="modal_btn btn_cancel">Cancel</button>
+                    <button class="modal_btn btn_reply">Reply</button>
+                </div>
+
             </div>
         </div>
 
@@ -109,4 +141,5 @@
 
     <script src="js/app.js"></script>
 </body>
+
 </html>
