@@ -2,6 +2,14 @@
  * Create a list that holds all of your cards
  */
 
+ /*
+ANIMATED CSS CLASSES TO USE :
+TOGGLE CARD : animated flipInY
+NOT MATCH : animated rubberBand
+MATCHED : animated tada
+*/
+
+
 // GLOBAL SCOPE
 const deck = document.querySelector('.deck');
 let toggledCards = [];
@@ -10,6 +18,8 @@ let clockOff = true;
 let time = 0;
 let clockId;
 let matched = 0;
+const cardMatch = 'card match open animated rubberBand';
+const cardFail = 'card match open animated tada'
 
 /*
  * Display the cards on the page
@@ -71,12 +81,13 @@ function isClickValid(clickTarget) {
 function toggleCard(card) {
     card.classList.toggle('show'); 
     card.classList.toggle('open');
+    card.classList.toggle('flipInY');
 }
 
 // push the clickTarget into the toggledCards array in global scope
 function addToggleCard(clickTarget) {
     toggledCards.push(clickTarget);
-    //console.log(toggledCards);
+    console.log(toggledCards);
 }
 
 // looking for a match
@@ -84,9 +95,11 @@ function checkForMatch() {
     if (toggledCards[0].firstElementChild.className ===
         toggledCards[1].firstElementChild.className) {
             
-            toggledCards[0].classList.toggle('match');
-            toggledCards[1].classList.toggle('match');
-            toggledCards = [];
+            setTimeout(function() {
+                toggledCards[0].className = cardMatch;
+                toggledCards[1].className = cardMatch;
+                toggledCards = [];
+                }, 500);
             checkWin();
     } else {
         setTimeout(function() {
@@ -268,7 +281,7 @@ function gameOver() {
 shuffleDeck();
 writeModalStats();
 //toggleModal();
-toggleStartModal();
+//toggleStartModal();
 
 /*
  * set up the event listener for a card. If a card is clicked:
