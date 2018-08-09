@@ -17,8 +17,8 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    background: #ffffff url('../img/geometry2.png');
+    font-family: 'Monda', sans-serif;
 }
 
 .container {
@@ -31,6 +31,7 @@ body {
 h1 {
     font-size: 2.75em;
     font-weight: 600;
+    font-family: 'Philosopher', sans-serif;
 }
 
 /*
@@ -85,10 +86,12 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
-    width: 345px;
+    width: 550px;
     margin-bottom: 10px;
     padding: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .score-panel .stars {
@@ -203,7 +206,7 @@ h1 {
     transform: translate(-50%, -50%);
     border-radius: 15px;
     text-align: center;
-    padding: 2rem 0;
+    padding: 2rem 2rem;
     border:3px solid #02ccba;
 }
 
@@ -216,6 +219,7 @@ h1 {
     font-size:30px;
     border:1px solid #02ccba;
     cursor: pointer;
+    font-family: 'Philosopher', sans-serif;
 }
 
 .modal_start_btn:hover {
@@ -233,8 +237,8 @@ h1 {
 
 .hero img {
     display: block;
-    margin: auto; 
-    width: 0%; 
+    margin: auto;
+    width: 0;
 }
 
 .show img {
@@ -242,7 +246,7 @@ h1 {
 }
 
 .match img {
-    margin: auto; 
+    margin: auto;
     display: block;
     width: 50%;
 }
@@ -281,6 +285,7 @@ animation: check 1s ease-in ;
         stroke-dashoffset: 0;
     }
 }
+
 @keyframes check {
     0% {
         stroke-dashoffset: 430;

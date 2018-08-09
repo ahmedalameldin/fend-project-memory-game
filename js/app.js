@@ -1,15 +1,3 @@
-/*
- * Create a list that holds all of your cards
- */
-
- /*
-ANIMATED CSS CLASSES TO USE :
-TOGGLE CARD : animated flipInY
-NOT MATCH : animated rubberBand
-MATCHED : animated tada
-*/
-
-
 // GLOBAL SCOPE
 const deck = document.querySelector('.deck');
 let toggledCards = [];
@@ -19,15 +7,6 @@ let time = 0;
 let clockId;
 let matched = 0;
 const cardMatch = 'card hero match open animated rubberBand';
-const cardFail = 'card hero match open animated tada'
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -39,8 +18,7 @@ function shuffle(array) {
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
-    }
-
+    };
     return array;
 }
 
@@ -53,37 +31,38 @@ deck.addEventListener('click', event => {
             startClock();
             clockOff = false;
         }
-    }
+    };
 
     if (isClickValid(clickTarget)) {
         toggleCard(clickTarget);
         addToggleCard(clickTarget);
-        
-    }
+
+    };
+
     if (toggledCards.length === 2) {
     //console.log('Now toggled Cards array have 2 cards');
         checkForMatch(clickTarget);
         addMove();
         checkScore();
-    } 
+    };
 });
 
 // valid a click func
-function isClickValid(clickTarget) { 
+function isClickValid(clickTarget) {
     return (clickTarget.classList.contains('card') &&
             !clickTarget.classList.contains('match') &&
             toggledCards.length < 2 &&
             !toggledCards.includes(clickTarget));
-            
+
 }
 
 // Toggle class of cards fuunction
 function toggleCard(card) {
-    card.classList.toggle('show'); 
+    card.classList.toggle('show');
     card.classList.toggle('open');
     card.classList.add('flipInY');
     card.classList.remove('tada');
-    
+
 }
 
 // push the clickTarget into the toggledCards array in global scope
@@ -96,23 +75,26 @@ function addToggleCard(clickTarget) {
 function checkForMatch() {
     if (toggledCards[0].firstElementChild.className ===
         toggledCards[1].firstElementChild.className) {
-            
+
             setTimeout(function() {
                 toggledCards[0].className = cardMatch;
                 toggledCards[1].className = cardMatch;
                 toggledCards = [];
                 console.log(toggledCards);
-                
+                setTimeout(function() {
+                    checkWin();
+                 }, 1500);
+
                 }, 700);
-            checkWin();
+
     } else {
-        
-        
+
+
         setTimeout(function() {
             fail(); //FAIL FUNCTION when two cards don't match
          }, 200);
          toggledCards = [];
-        
+
     }
 }
 
@@ -134,7 +116,7 @@ function fail() {
 function shuffleDeck() {
     const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
     const shuffledCards = shuffle(cardsToShuffle);
-    
+
     for (card of shuffledCards) {
         deck.appendChild(card);
     }
@@ -149,7 +131,7 @@ function addMove() {
 
 // STARS : vs Moves to check score rating and hide a star
 function checkScore() {
-    if (moves === 14 || moves === 20 || moves === 30) {
+    if (moves === 14 || moves === 20 || moves === 24 || moves === 30) {
         hideStar();
     }
 }
@@ -223,7 +205,7 @@ function writeModalStats() {
     const starsStat = document.querySelector('.modal_stars');
     const stars = getStars();
 
-    timeStat.innerHTML = `Time = ${clockTime}`; 
+    timeStat.innerHTML = `Time = ${clockTime}`;
     movesStat.innerHTML = `Moves = ${moves}`;
     starsStat.innerHTML = `Stars = ${stars}`;
 }
@@ -291,7 +273,7 @@ function checkWin() {
     }
 };
 
-// Congratulations 
+// Congratulations
 function gameOver() {
     stopClock();
     writeModalStats();
@@ -300,7 +282,6 @@ function gameOver() {
 
 shuffleDeck();
 writeModalStats();
-//toggleModal();
 toggleStartModal();
 
 /*
