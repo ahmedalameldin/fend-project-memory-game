@@ -8,6 +8,7 @@
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/animate.min.css">
 </head>
 
 <body>
@@ -16,11 +17,11 @@
 
         <div class="modal_start hide">
             <div class="modal_start_body">
-                
-                    <h1>Matching Game</h1>
-                    <p>MATCH ALL CARDS TO WIN THE GAME !</p>
-                
-                 <div class="modal_btns">
+
+                <h1>Matching Game</h1>
+                <p>MATCH ALL CARDS TO WIN THE GAME !</p>
+
+                <div class="modal_btns">
                     <button class="modal_start_btn">READY</button>
                 </div>
 
@@ -28,13 +29,13 @@
         </div>
 
         <header>
-            <h1>Matching Game</h1>
+            <h1>Matching Game</h1>          
         </header>
 
         <section class="score-panel">
 
             <!-- Timer span to add clock here -->
-            <span class="clock">00:00</span>
+            TIME: <span class="clock">00:00</span>
 
             <ul class="stars">
                 <li>
@@ -48,62 +49,64 @@
                 </li>
             </ul>
 
-            <span class="moves">3</span> Moves
+            <span class="moves"> 0 </span> Moves
 
             <div class="restart">
-                <i class="fa fa-repeat"></i>
+               Restart <i class="fa fa-repeat"></i>
             </div>
         </section>
-
+        
+        <!-- fa fa-diamond -->
         <ul class="deck">
-            <li class="card">
-                <i class="fa fa-diamond"></i>
+            <li class="card animated hero">
+                <div class="1"><img src="img/chicken.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
+            <li class="card animated hero">
+                <div class="1"><img src="img/chicken.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-anchor"></i>
+            <li class="card animated hero">
+                <div class="2"><img src="img/owl.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-bolt"></i>
+            <li class="card animated hero">
+                <div class="2"><img src="img/owl.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-cube"></i>
+            <li class="card animated hero">
+                <div class="3"><img src="img/lion.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-anchor"></i>
+            <li class="card animated hero">
+                <div class="3"><img src="img/lion.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-leaf"></i>
+            <li class="card animated hero">
+                <div class="4"><img src="img/dog.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-bicycle"></i>
+            <li class="card animated hero">
+                <div class="4"><img src="img/dog.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-diamond"></i>
+            <li class="card animated hero">
+                <div class="5"><img src="img/fish.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-bomb"></i>
+            <li class="card animated hero">
+                <div class="5"><img src="img/fish.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-leaf"></i>
+            <li class="card animated hero">
+                <div class="6"><img src="img/monkey.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-bomb"></i>
+            <li class="card animated hero">
+                <div class="6"><img src="img/monkey.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-bolt"></i>
+            <li class="card animated hero">
+                <div class="7"><img src="img/panda.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-bicycle"></i>
+            <li class="card animated hero">
+                <div class="7"><img src="img/panda.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
+            <li class="card animated hero">
+                <div class="8"><img src="img/unicorn.png" alt=""></div>
             </li>
-            <li class="card">
-                <i class="fa fa-cube"></i>
+            <li class="card animated hero">
+                <div class="8"><img src="img/unicorn.png" alt=""></div>
             </li>
+            
         </ul>
 
         <div class="modal_bkgd hide">

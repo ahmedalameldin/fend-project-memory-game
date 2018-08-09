@@ -18,8 +18,8 @@ let clockOff = true;
 let time = 0;
 let clockId;
 let matched = 0;
-const cardMatch = 'card match open animated rubberBand';
-const cardFail = 'card match open animated tada'
+const cardMatch = 'card hero match open animated rubberBand';
+const cardFail = 'card hero match open animated tada'
 
 /*
  * Display the cards on the page
@@ -81,7 +81,9 @@ function isClickValid(clickTarget) {
 function toggleCard(card) {
     card.classList.toggle('show'); 
     card.classList.toggle('open');
-    card.classList.toggle('flipInY');
+    card.classList.add('flipInY');
+    card.classList.remove('tada');
+    
 }
 
 // push the clickTarget into the toggledCards array in global scope
@@ -99,16 +101,34 @@ function checkForMatch() {
                 toggledCards[0].className = cardMatch;
                 toggledCards[1].className = cardMatch;
                 toggledCards = [];
-                }, 500);
+                console.log(toggledCards);
+                
+                }, 700);
             checkWin();
     } else {
+        
+        
         setTimeout(function() {
-        toggleCard(toggledCards[0]);
-        toggleCard(toggledCards[1]);
-        toggledCards = [];
-        }, 1000);
-        }
+            fail(); //FAIL FUNCTION when two cards don't match
+         }, 200);
+         toggledCards = [];
+        
+    }
 }
+
+
+function fail() {
+    var selected = document.querySelectorAll(".show");
+    selected[0].classList.add("tada");
+    selected[1].classList.add("tada");
+    selected[0].classList.remove("flipInY");
+    selected[1].classList.remove("flipInY");
+    setTimeout(function() {
+       selected[0].classList.remove("tada", "show", "open");
+       selected[1].classList.remove("tada", "show", "open");
+    }, 1000);
+ }
+
 
 // shuffel cards
 function shuffleDeck() {
@@ -129,7 +149,7 @@ function addMove() {
 
 // STARS : vs Moves to check score rating and hide a star
 function checkScore() {
-    if (moves === 10 || moves === 14 || moves === 20) {
+    if (moves === 14 || moves === 20 || moves === 30) {
         hideStar();
     }
 }
@@ -239,7 +259,7 @@ function replyGame() {
 function resetCards() {
     const cards = document.querySelectorAll('.deck li');
     for (let card of cards) {
-    card.classList = 'card';
+    card.classList = 'card hero animated';
     }
 };
 
@@ -281,7 +301,7 @@ function gameOver() {
 shuffleDeck();
 writeModalStats();
 //toggleModal();
-//toggleStartModal();
+toggleStartModal();
 
 /*
  * set up the event listener for a card. If a card is clicked:
